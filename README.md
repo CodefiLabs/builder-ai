@@ -34,7 +34,7 @@ Agent OS with Claude Code & Cursor
 
 #### 2.When you are ready to install Builder AI in a project, navigate to your project folder and run the following command:
 
-`curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/project.sh | bash -s -- --no-base --claude-code --cursor`
+`~/.builder-ai/setup/project.sh`
 
 ---
 
