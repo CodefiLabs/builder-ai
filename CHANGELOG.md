@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Agent OS will be documented in this file.
+All notable changes to Builder AI will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -20,15 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Replaced Decisions with Recaps
 
-Earlier versions added a decisions.md inside a project's .agent-os/product/.  In practice, this was rarely used and didn't help future development.
+Earlier versions added a decisions.md inside a project's .builder-ai/product/. In practice, this was rarely used and didn't help future development.
 
-It's been replaced with a new system for creating "Recaps"—short summaries of what was built—after every feature spec's implementation has been completed.  Similar to a changelog, but more descriptive and context-focused.  These recaps are easy to reference by both humans and AI agents.
+It's been replaced with a new system for creating "Recaps"—short summaries of what was built—after every feature spec's implementation has been completed. Similar to a changelog, but more descriptive and context-focused. These recaps are easy to reference by both humans and AI agents.
 
 Recaps are automatically generated via the new complete-tasks.md process.
 
 ### Added Project-Manager Subagent
 
-A goal of this update was to tighten up the processes for creating specs and executing tasks, ensuring these processes are executed reliably.  Sounds like the job for a "project manager".
+A goal of this update was to tighten up the processes for creating specs and executing tasks, ensuring these processes are executed reliably. Sounds like the job for a "project manager".
 
 This update introduces a new subagent (for Claude Code) called project-manager which handles all task completion, status updates, and reporting progress back to you.
 
@@ -44,55 +44,61 @@ Several changes to the instructions, processes, and executions, all aimed at hel
 
 ## [1.4.0] - 2025-08-17
 
-BIG updates in this one!  Thanks for all the feedback, requests and support 🙏
+BIG updates in this one! Thanks for all the feedback, requests and support 🙏
 
 ### All New Installation Process
 
-The way Agent OS gets installed is structured differently from prior versions.  The new system works as follows:
+The way Builder AI gets installed is structured differently from prior versions. The new system works as follows:
 
 There are 2 installation processes:
+
 - Your "Base installation" (now optional, but still recommended!)
 - Your "Project installation"
 
 **"Base installation"**
-- Installs all of the Agent OS files to a location of your choosing on your system where they can be customized (especially your standards) and maintained.
+
+- Installs all of the Builder AI files to a location of your choosing on your system where they can be customized (especially your standards) and maintained.
 - Project installations copy files from your base installation, so they can be customized and self-contained within each individual project.
 - Your base installation now has a config.yml
 
-To install the Agent OS base installation,
+To install the Builder AI base installation,
 
 1. cd to a location of your choice (your system's home folder is a good choice).
 
 2. Run one of these commands:
-  - Agent OS with Claude Code support:
-  `curl -sSL https://raw.githubusercontent.com/buildermethods/agent-os/main/setup/base.sh | bash -s -- --claude-code`
-  - Agent OS with Cursor support:
-  `curl -sSL https://raw.githubusercontent.com/buildermethods/agent-os/main/setup/base.sh | bash -s -- --cursor`
-  - Agent OS with Claude Code & Cursor support:
-  `curl -sSL https://raw.githubusercontent.com/buildermethods/agent-os/main/setup/base.sh | bash -s -- --claude-code --cursor`
+
+- Builder AI with Claude Code support:
+  `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --claude-code`
+- Builder AI with Cursor support:
+  `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --cursor`
+- Builder AI with Claude Code & Cursor support:
+  `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --claude-code --cursor`
 
 3. Customize your /standards (just like earlier versions)
 
 **Project installation**
 
-- Now each project codebase gets it's own self-contained installation of Agent OS.  It no longer references instructions or standards that reside elsewhere on your system.  These all get installed directly into your project's .agent-os folder, which brings several benefits:
-  - No external references = more reliable Agent OS commands & workflows.
+- Now each project codebase gets it's own self-contained installation of Builder AI. It no longer references instructions or standards that reside elsewhere on your system. These all get installed directly into your project's .builder-ai folder, which brings several benefits:
+  - No external references = more reliable Builder AI commands & workflows.
   - You can commit your instructions, standards, Claude Code commands and agents to your project's github repo for team access.
   - You can customize standards differently per project than what's in your base installation.
 
-Your project installation command will be based on where you installed the Agent OS base installation.
-- If you've installed it to your system's home folder, then your project installation command will be `~/.agent-os/setup/project.sh`.
-- If you've installed it elsewhere, your command will be `/path/to/agent-os/setup/project.sh`
-(after your base installation, it will show you _your_ project installation command. It's a good idea to save it or make an alias if you work on many projects.)
+Your project installation command will be based on where you installed the Builder AI base installation.
 
-If (for whatever reason) you didn't install the base installation, you can still install Agent OS directly into a project, by pulling it directly off of the public github repo using the following command.
+- If you've installed it to your system's home folder, then your project installation command will be `~/.builder-ai/setup/project.sh`.
+- If you've installed it elsewhere, your command will be `/path/to/builder-ai/setup/project.sh`
+  (after your base installation, it will show you _your_ project installation command. It's a good idea to save it or make an alias if you work on many projects.)
+
+If (for whatever reason) you didn't install the base installation, you can still install Builder AI directly into a project, by pulling it directly off of the public github repo using the following command.
+
 - Note: This means your standards folder won't inherit your defaults from a base installation. You'd need to customize the files in the standards folder for this project.
-`curl -sSL https://raw.githubusercontent.com/buildermethods/agent-os/main/setup/project.sh | bash -s -- --no-base --claude-code --cursor`
+  `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/project.sh | bash -s -- --no-base --claude-code --cursor`
 
-### Agent OS config.yml
+### Builder AI config.yml
 
-When you install the Agent OS base installation, that now includes a config.yml file.  Currently this file is used for:
-- Tracking the Agent OS version you have installed
+When you install the Builder AI base installation, that now includes a config.yml file. Currently this file is used for:
+
+- Tracking the Builder AI version you have installed
 - Which coding agents (Claude Code, Cursor) you're using
 - Project Types (new! read on...)
 
@@ -100,9 +106,9 @@ When you install the Agent OS base installation, that now includes a config.yml 
 
 If you work on different types of projects, you can define different sets of standards, code style, and instructions for each!
 
-- By default, a new installation of Agent OS into a project will copy its instructions and standards from your base installation's /instructions and /standards.
+- By default, a new installation of Builder AI into a project will copy its instructions and standards from your base installation's /instructions and /standards.
 - You can define additional project types by doing the following:
-  - Setup a folder (typically inside your base installation's .agent-os folder, but it can be anywhere on your system) which contains /instructions and /standards folders (copy these from your base install, then customize).
+  - Setup a folder (typically inside your base installation's .builder-ai folder, but it can be anywhere on your system) which contains /instructions and /standards folders (copy these from your base install, then customize).
   - Define the project type's folder location on your system in your base install's config.yml
 - Using project types:
   - If you've named a project type, 'ruby-on-rails', when running your project install command, add the flag --project-type=ruby-on-rails.
@@ -111,11 +117,12 @@ If you work on different types of projects, you can define different sets of sta
 ### Removed or changed in version 1.4.0:
 
 This update does away with the old installation script files:
-- setup.sh (replaced by /setup/base.sh and /setup/project.sh)
-- setup-claude-code.sh (now you add --claude-code flag to the install commands or enable it in your Agent OS config.yml)
-- setup-cursor.sh (now you add --cursor flag to the install commands or enable it in your Agent OS config.yml)
 
-Claude Code Agent OS commands now should _not_ be installed in the `~/.agent-os/.claude/commands` folder.  Now, these are copied from ~/.agent-os/commands into each project's `~/.claude/commands` folder (this prevents duplicate commands showing in in Claude Code's commands list).  The same approach applies to Claude Code subagents files.
+- setup.sh (replaced by /setup/base.sh and /setup/project.sh)
+- setup-claude-code.sh (now you add --claude-code flag to the install commands or enable it in your Builder AI config.yml)
+- setup-cursor.sh (now you add --cursor flag to the install commands or enable it in your Builder AI config.yml)
+
+Claude Code Builder AI commands now should _not_ be installed in the `~/.builder-ai/.claude/commands` folder. Now, these are copied from ~/.builder-ai/commands into each project's `~/.claude/commands` folder (this prevents duplicate commands showing in in Claude Code's commands list). The same approach applies to Claude Code subagents files.
 
 ### Upgrading to version 1.4.0
 
@@ -123,30 +130,33 @@ Follow these steps to update a previous version to 1.4.0:
 
 1. If you've customized any files in /instructions, back those up now. They will be overwritten.
 
-2. Navigate to your home directory (or whichever location you want to have your Agent OS base installation)
+2. Navigate to your home directory (or whichever location you want to have your Builder AI base installation)
 
 3. Run the following to command, which includes flags to overwrite your /instructions (remove the --cursor flag if not using Cursor):
-`curl -sSL https://raw.githubusercontent.com/buildermethods/agent-os/main/setup/base.sh | bash -s -- --overwrite-instructions --claude-code --cursor`
+   `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --overwrite-instructions --claude-code --cursor`
 
-4. If your ~/.claude/commands contain Agent OS commands, remove those and copy the versions that are now in your base installation's commands folder into your _project's_ `.claude/commands` folder.
+4. If your ~/.claude/commands contain Builder AI commands, remove those and copy the versions that are now in your base installation's commands folder into your _project's_ `.claude/commands` folder.
 
-5. Navigate to your project. Run your project installation command to install Agent OS instructions and standards into your project's installation. If your Agent OS base installation is in your system's home folder (like previous versions), then your project installation will be: `~/.agent-os/setup/project.sh`
+5. Navigate to your project. Run your project installation command to install Builder AI instructions and standards into your project's installation. If your Builder AI base installation is in your system's home folder (like previous versions), then your project installation will be: `~/.builder-ai/setup/project.sh`
 
 ## [1.3.1] - 2025-08-02
 
 ### Added
+
 - **Date-Checker Subagent** - New specialized Claude Code subagent for accurate date determination using file system timestamps
   - Uses temporary file creation to extract current date in YYYY-MM-DD format
   - Includes context checking to avoid duplication
   - Provides clear validation and error handling
 
 ### Changed
+
 - **Create-Spec Instructions** - Updated `instructions/core/create-spec.md` to use the new date-checker subagent
   - Replaced complex inline date determination logic with simple subagent delegation
   - Simplified step 4 (date_determination) by removing 45 lines of validation and fallback code
   - Cleaner instruction flow with specialized agent handling date logic
 
 ### Improved
+
 - **Code Maintainability** - Date determination logic centralized in reusable subagent
 - **Instruction Clarity** - Simplified create-spec workflow with cleaner delegation pattern
 - **Error Handling** - More robust date determination with dedicated validation rules
@@ -154,11 +164,13 @@ Follow these steps to update a previous version to 1.4.0:
 ## [1.3.0] - 2025-08-01
 
 ### Added
+
 - **Pre-flight Check System** - New `meta/pre-flight.md` instruction for centralized agent detection and initialization
 - **Proactive Agent Usage** - Updated agent descriptions to encourage proactive use when appropriate
 - **Structured Instruction Organization** - New folder structure with `core/` and `meta/` subdirectories
 
 ### Changed
+
 - **Instruction File Structure** - Reorganized all instruction files into subdirectories:
   - Core instructions moved to `instructions/core/` (plan-product, create-spec, execute-tasks, execute-task, analyze-product)
   - Meta instructions in `instructions/meta/` (pre-flight, more to come)
@@ -168,18 +180,21 @@ Follow these steps to update a previous version to 1.4.0:
 - **Setup Script** - Updated to create subdirectories and download files to new locations
 
 ### Improved
+
 - **Code Clarity** - Removed redundant XML instructions in favor of descriptive step purposes
 - **Agent Efficiency** - Centralized agent detection reduces repeated checks throughout workflows
 - **Maintainability** - Cleaner instruction format with less XML boilerplate
 - **User Experience** - Clearer indication of when specialized agents will be used proactively
 
 ### Removed
+
 - **CLAUDE.md** - Removed deprecated Claude Code configuration file (functionality moved to pre-flight system, preventing over-reading instructions into context)
 - **Redundant Instructions** - Eliminated verbose ACTION/MODIFY/VERIFY instruction blocks
 
 ## [1.2.0] - 2025-07-29
 
 ### Added
+
 - **Claude Code Specialized Subagents** - New agents to offload specific tasks for improved efficiency:
   - `test-runner.md` - Handles test execution and failure analysis with minimal toolset
   - `context-fetcher.md` - Retrieves information from files while checking context to avoid duplication
@@ -189,6 +204,7 @@ Follow these steps to update a previous version to 1.4.0:
 - **Subagent Integration** across all instruction files with automatic fallback for non-Claude Code users
 
 ### Changed
+
 - **Instruction Files** - All updated to support conditional agent usage:
   - `execute-tasks.md` - Uses git-workflow (branch management, PR creation), test-runner (full suite), and context-fetcher (loading lite files)
   - `execute-task.md` - Uses context-fetcher (best practices, code style) and test-runner (task-specific tests)
@@ -200,6 +216,7 @@ Follow these steps to update a previous version to 1.4.0:
   - `setup-claude-code.sh` - Downloads all agents to `~/.claude/agents/` directory
 
 ### Improved
+
 - **Context Efficiency** - Specialized agents use minimal context for their specific tasks
 - **Code Organization** - Complex operations delegated to focused agents with clear responsibilities
 - **Error Handling** - Agents provide targeted error analysis and recovery strategies
@@ -207,14 +224,16 @@ Follow these steps to update a previous version to 1.4.0:
 - **Performance** - Reduced context checks through one-time agent detection pattern
 
 ### Technical Details
+
 - Each agent uses only necessary tools (e.g., test-runner uses only Bash, Read, Grep, Glob)
 - Automatic fallback ensures compatibility for users without Claude Code
 - Consistent `IF has_[agent_name]:` pattern reduces code complexity
-- All agents follow Agent OS conventions (branch naming, commit messages, file templates)
+- All agents follow Builder AI conventions (branch naming, commit messages, file templates)
 
 ## [1.1.0] - 2025-07-29
 
 ### Added
+
 - New `mission-lite.md` file generation in product initialization for efficient AI context usage
 - New `spec-lite.md` file generation in spec creation for condensed spec summaries
 - New `execute-task.md` instruction file for individual task execution with TDD workflow
@@ -227,6 +246,7 @@ Follow these steps to update a previous version to 1.4.0:
 - Context-aware file loading throughout all instruction files
 
 ### Changed
+
 - Optimized `plan-product.md` to generate condensed versions of documents
 - Enhanced `create-spec.md` with conditional context loading for mission-lite and tech-stack files
 - Simplified technical specification structure by removing multiple approach options
@@ -238,6 +258,7 @@ Follow these steps to update a previous version to 1.4.0:
 - Restructured task execution to follow typical TDD pattern (tests first, implementation, verification)
 
 ### Improved
+
 - Context efficiency by 60-80% through conditional loading and lite file versions
 - Reduced duplication when files are referenced multiple times in a workflow
 - Clearer separation between task-specific and full test suite execution
@@ -245,6 +266,7 @@ Follow these steps to update a previous version to 1.4.0:
 - Better organization of code style rules with language-specific files
 
 ### Fixed
+
 - Duplicate content loading when instruction files are called in loops
 - Unnecessary loading of full documentation files when condensed versions suffice
 - Redundant test suite runs between individual task execution and overall workflow
@@ -252,7 +274,8 @@ Follow these steps to update a previous version to 1.4.0:
 ## [1.0.0] - 2025-07-21
 
 ### Added
-- Initial release of Agent OS framework
+
+- Initial release of Builder AI framework
 - Core instruction files:
   - `plan-product.md` for product initialization
   - `create-spec.md` for feature specification
@@ -272,11 +295,11 @@ Follow these steps to update a previous version to 1.4.0:
 - Task management with TDD workflow
 - Spec creation and organization system
 
-[1.4.1]: https://github.com/buildermethods/agent-os/compare/v1.4.0...v1.4.1
-[1.4.2]: https://github.com/buildermethods/agent-os/compare/v1.4.1...v1.4.2
-[1.4.0]: https://github.com/buildermethods/agent-os/compare/v1.3.1...v1.4.0
-[1.3.1]: https://github.com/buildermethods/agent-os/compare/v1.3.0...v1.3.1
-[1.3.0]: https://github.com/buildermethods/agent-os/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/buildermethods/agent-os/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/buildermethods/agent-os/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/buildermethods/agent-os/releases/tag/v1.0.0
+[1.4.1]: https://github.com/CodefiLabs/builder-ai/compare/v1.4.0...v1.4.1
+[1.4.2]: https://github.com/CodefiLabs/builder-ai/compare/v1.4.1...v1.4.2
+[1.4.0]: https://github.com/CodefiLabs/builder-ai/compare/v1.3.1...v1.4.0
+[1.3.1]: https://github.com/CodefiLabs/builder-ai/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/CodefiLabs/builder-ai/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/CodefiLabs/builder-ai/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/CodefiLabs/builder-ai/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/CodefiLabs/builder-ai/releases/tag/v1.0.0

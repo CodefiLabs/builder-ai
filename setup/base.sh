@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Agent OS Base Installation Script
-# This script installs Agent OS to the current directory
+# Builder AI Base Installation Script
+# This script installs Builder AI to the current directory
 
 set -e  # Exit on error
 
@@ -13,7 +13,7 @@ CLAUDE_CODE=false
 CURSOR=false
 
 # Base URL for raw GitHub content
-BASE_URL="https://raw.githubusercontent.com/buildermethods/agent-os/main"
+BASE_URL="https://raw.githubusercontent.com/CodefiLabs/builder-ai/main"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -60,15 +60,15 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo ""
-echo "🚀 Agent OS Base Installation"
+echo "🚀 Builder AI Base Installation"
 echo "============================="
 echo ""
 
 # Set installation directory to current directory
 CURRENT_DIR=$(pwd)
-INSTALL_DIR="$CURRENT_DIR/.agent-os"
+INSTALL_DIR="$CURRENT_DIR/.builder-ai"
 
-echo "📍 The Agent OS base installation will be installed in the current directory ($CURRENT_DIR)"
+echo "📍 The Builder AI base installation will be installed in the current directory ($CURRENT_DIR)"
 echo ""
 
 echo "📁 Creating base directories..."
@@ -82,7 +82,7 @@ curl -sSL "${BASE_URL}/setup/functions.sh" -o "$INSTALL_DIR/setup/functions.sh"
 source "$INSTALL_DIR/setup/functions.sh"
 
 echo ""
-echo "📦 Installing the latest version of Agent OS from the Agent OS GitHub repository..."
+echo "📦 Installing the latest version of Builder AI from the Builder AI GitHub repository..."
 
 # Install /instructions, /standards, and /commands folders and files from GitHub
 install_from_github "$INSTALL_DIR" "$OVERWRITE_INSTRUCTIONS" "$OVERWRITE_STANDARDS"
@@ -139,14 +139,14 @@ fi
 
 # Success message
 echo ""
-echo "✅ Agent OS base installation has been completed."
+echo "✅ Builder AI base installation has been completed."
 echo ""
 
 # Dynamic project installation command
 PROJECT_SCRIPT="$INSTALL_DIR/setup/project.sh"
 echo "--------------------------------"
 echo ""
-echo "To install Agent OS in a project, run:"
+echo "To install Builder AI in a project, run:"
 echo ""
 echo "   cd <project-directory>"
 echo "   $PROJECT_SCRIPT"
@@ -154,7 +154,7 @@ echo ""
 echo "--------------------------------"
 echo ""
 echo "📍 Base installation files installed to:"
-echo "   $INSTALL_DIR/instructions/      - Agent OS instructions"
+echo "   $INSTALL_DIR/instructions/      - Builder AI instructions"
 echo "   $INSTALL_DIR/standards/         - Development standards"
 echo "   $INSTALL_DIR/commands/          - Command templates"
 echo "   $INSTALL_DIR/config.yml         - Configuration"
@@ -177,8 +177,8 @@ echo "3. Navigate to a project directory and run: $PROJECT_SCRIPT"
 echo ""
 echo "--------------------------------"
 echo ""
-echo "Refer to the official Agent OS docs at:"
-echo "https://buildermethods.com/agent-os"
+echo "Refer to the official Builder AI docs at:"
+echo "https://buildermethods.com/builder-ai"
 echo ""
 echo "Keep building! 🚀"
 echo ""

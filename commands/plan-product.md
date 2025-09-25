@@ -1,6 +1,6 @@
 # Plan Product
 
-Plan a new product and install Agent OS in its codebase.
+Plan a new product and install Builder AI in its codebase.
 
 Refer to the instructions located in this file:
-@.agent-os/instructions/core/plan-product.md
+@.builder-ai/instructions/core/plan-product.md

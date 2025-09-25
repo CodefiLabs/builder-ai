@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Agent OS Project Installation Script
-# This script installs Agent OS in a project directory
+# Builder AI Project Installation Script
+# This script installs Builder AI in a project directory
 
 set -e  # Exit on error
 
@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --no-base                   Install from GitHub (not from a base Agent OSinstallation on your system)"
+            echo "  --no-base                   Install from GitHub (not from a base Builder AIinstallation on your system)"
             echo "  --overwrite-instructions    Overwrite existing instruction files"
             echo "  --overwrite-standards       Overwrite existing standards files"
             echo "  --claude-code               Add Claude Code support"
@@ -63,16 +63,16 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo ""
-echo "🚀 Agent OS Project Installation"
+echo "🚀 Builder AI Project Installation"
 echo "================================"
 echo ""
 
 # Get project directory info
 CURRENT_DIR=$(pwd)
 PROJECT_NAME=$(basename "$CURRENT_DIR")
-INSTALL_DIR="./.agent-os"
+INSTALL_DIR="./.builder-ai"
 
-echo "📍 Installing Agent OS to this project's root directory ($PROJECT_NAME)"
+echo "📍 Installing Builder AI to this project's root directory ($PROJECT_NAME)"
 echo ""
 
 # Determine if running from base installation or GitHub
@@ -80,18 +80,18 @@ if [ "$NO_BASE" = true ]; then
     IS_FROM_BASE=false
     echo "📦 Installing directly from GitHub (no base installation)"
     # Set BASE_URL for GitHub downloads
-    BASE_URL="https://raw.githubusercontent.com/buildermethods/agent-os/main"
+    BASE_URL="https://raw.githubusercontent.com/CodefiLabs/builder-ai/main"
     # Download and source functions when running from GitHub
-    TEMP_FUNCTIONS="/tmp/agent-os-functions-$$.sh"
+    TEMP_FUNCTIONS="/tmp/builder-ai-functions-$$.sh"
     curl -sSL "${BASE_URL}/setup/functions.sh" -o "$TEMP_FUNCTIONS"
     source "$TEMP_FUNCTIONS"
     rm "$TEMP_FUNCTIONS"
 else
     IS_FROM_BASE=true
-    # Get the base Agent OS directory
+    # Get the base Builder AI directory
     SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
     BASE_AGENT_OS="$(dirname "$SCRIPT_DIR")"
-    echo "✓ Using Agent OS base installation at $BASE_AGENT_OS"
+    echo "✓ Using Builder AI base installation at $BASE_AGENT_OS"
     # Source shared functions from base installation
     source "$SCRIPT_DIR/functions.sh"
 fi
@@ -109,7 +109,7 @@ if [ "$IS_FROM_BASE" = true ]; then
         if grep -q "claude_code:" "$BASE_AGENT_OS/config.yml" && \
            grep -A1 "claude_code:" "$BASE_AGENT_OS/config.yml" | grep -q "enabled: true"; then
             CLAUDE_CODE=true
-            echo "  ✓ Auto-enabling Claude Code support (from Agent OS config)"
+            echo "  ✓ Auto-enabling Claude Code support (from Builder AI config)"
         fi
     fi
 
@@ -118,7 +118,7 @@ if [ "$IS_FROM_BASE" = true ]; then
         if grep -q "cursor:" "$BASE_AGENT_OS/config.yml" && \
            grep -A1 "cursor:" "$BASE_AGENT_OS/config.yml" | grep -q "enabled: true"; then
             CURSOR=true
-            echo "  ✓ Auto-enabling Cursor support (from Agent OS config)"
+            echo "  ✓ Auto-enabling Cursor support (from Builder AI config)"
         fi
     fi
 
@@ -270,11 +270,11 @@ fi
 
 # Success message
 echo ""
-echo "✅ Agent OS has been installed in your project ($PROJECT_NAME)!"
+echo "✅ Builder AI has been installed in your project ($PROJECT_NAME)!"
 echo ""
 echo "📍 Project-level files installed to:"
-echo "   .agent-os/instructions/    - Agent OS instructions"
-echo "   .agent-os/standards/       - Development standards"
+echo "   .builder-ai/instructions/    - Builder AI instructions"
+echo "   .builder-ai/standards/       - Development standards"
 
 if [ "$CLAUDE_CODE" = true ]; then
     echo "   .claude/commands/          - Claude Code commands"
@@ -311,8 +311,8 @@ fi
 
 echo "--------------------------------"
 echo ""
-echo "Refer to the official Agent OS docs at:"
-echo "https://buildermethods.com/agent-os"
+echo "Refer to the official Builder AI docs at:"
+echo "https://buildermethods.com/builder-ai"
 echo ""
 echo "Keep building! 🚀"
 echo ""
