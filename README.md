@@ -18,7 +18,7 @@ Use it with:
 
 ### Documentation & Installation
 
-Navigate to your home folder and run one of the following commands to install Builder AI with the desired AI coding tool.
+#### 1. Navigate to your home folder and run one of the following commands to install Builder AI with the desired AI coding tool.
 
 Agent OS with Claude Code
 
@@ -32,7 +32,7 @@ Agent OS with Claude Code & Cursor
 
 `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --claude-code --cursor`
 
-When you are ready to install Builder AI in a project, navigate to your project folder and run the following command:
+#### 2.When you are ready to install Builder AI in a project, navigate to your project folder and run the following command:
 
 `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/project.sh | bash -s -- --no-base --claude-code --cursor`
 
