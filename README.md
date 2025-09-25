@@ -19,15 +19,12 @@ Use it with:
 ### Documentation & Installation
 
 Agent OS with Claude Code
-
 `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --claude-code`
 
 Agent OS with Cursor
-
 `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --cursor`
 
 Agent OS with Claude Code & Cursor
-
 `curl -sSL https://raw.githubusercontent.com/CodefiLabs/builder-ai/main/setup/base.sh | bash -s -- --claude-code --cursor`
 
 ---
